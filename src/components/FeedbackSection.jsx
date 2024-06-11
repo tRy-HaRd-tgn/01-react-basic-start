@@ -1,5 +1,19 @@
 import { useState } from "react";
 import Button from "./button/Button";
+function StateVsRef() {
+  const [inputVal, setInputVal] = useState();
+  return (
+    <div>
+      <h3>Input value: {inputVal}</h3>
+      <input
+        type="text"
+        className="control"
+        onChange={(event) => setInputVal(event.target.value)}
+        value={inputVal}
+      />
+    </div>
+  );
+}
 export default function FeedbackSection() {
   const [form, setForm] = useState({
     name: "",
@@ -16,7 +30,7 @@ export default function FeedbackSection() {
   return (
     <section>
       <h3>Обратная связь</h3>
-      <form>
+      <form style={{ marginBottom: "1rem" }}>
         <label htmlFor="input_feedback">Ваше имя</label>
         <input
           type="text"
@@ -41,17 +55,22 @@ export default function FeedbackSection() {
           <option value="help">Нужна помощь</option>
           <option value="suggest">Предложение</option>
         </select>
+        <pre>
+          name: {form.name}
+          <br />
+          <br />
+          reason: {form.reason}
+        </pre>
+        <Button
+          disabled={form.hasError}
+          isActive={!form.hasError}
+          style={{ marginTop: "1rem" }}
+        >
+          Отправить{" "}
+        </Button>
       </form>
-      <pre>
-        name: {form.name}
-        <br />
-        reason: {form.reason}
-        <br />
-        <br />
-      </pre>
-      <Button disabled={form.hasError} isActive={!form.hasError}>
-        Отправить{" "}
-      </Button>
+
+      <StateVsRef></StateVsRef>
     </section>
   );
 }
