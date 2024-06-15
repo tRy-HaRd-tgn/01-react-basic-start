@@ -5,8 +5,9 @@ import { Fragment, useState } from "react";
 import TabSection from "./components/TabSection";
 import IntroSection from "./components/IntroSection";
 import FeedbackSection from "./components/FeedbackSection";
+import EffectsSection from "./components/EffectsSection";
 export default function App() {
-  const [tab, setTab] = useState();
+  const [tab, setTab] = useState("effect");
   return (
     <Fragment>
       <Header />
@@ -22,6 +23,11 @@ export default function App() {
         {tab == "feedback" && (
           <>
             <FeedbackSection />
+          </>
+        )}
+        {tab == "effect" && (
+          <>
+            <EffectsSection />
           </>
         )}
       </main>
